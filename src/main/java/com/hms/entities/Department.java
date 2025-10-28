@@ -3,6 +3,7 @@ package com.hms.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -24,5 +25,6 @@ public class Department {
     private Doctor hod;
 
     @ManyToMany
-    private List<Doctor> doctors;
+    @Builder.Default
+    private List<Doctor> doctors = new LinkedList<>();
 }
