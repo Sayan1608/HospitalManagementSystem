@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
+@ToString
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +23,13 @@ public class Appointment {
     @Column(length = 500)
     private String reason;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
+    @ToString.Exclude
     private Patient patient;// owning side
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
+    @ToString.Exclude
     private Doctor doctor;
 }
